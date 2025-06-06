@@ -45,15 +45,35 @@ document.getElementById("frmAgregar").addEventListener("submit", async e => {
     const correo = document.getElementById("txtEmail").value.trim();
 
     if (!nombre || !apellido || !correo) {
-        alert("IIngrese los valores en blanco")
+        alert("Ingrese los valores en blanco")
         return; // Para evitar que los datos se envien y lo envia al bloque de codigo principal
     }
 
     const respuesta = await fetch(API_URL,
         {
-            method: "POST"
+            method: "POST",
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({nombre, apellido, correo})
 
         });
 
+        //verificar si la api responde a los datos que fueron enviados correctamente
+        if(respuesta.ok){
+            alert("El registro fue agregado correctamente");
         
+            //limpiar formulario
+            document.getElementById("frmAgregar").reset();
+
+            //cerrar el modal
+            modal.close();
+
+            //Recargar la tabla
+            obtenerIntegrantes();
+
+        }
+        else{
+            //en caso que la api devuelva un codigo diferente a 200-299
+            alert("El registro no pudo ser agregado");
+     
+        }
 });
