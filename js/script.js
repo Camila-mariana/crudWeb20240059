@@ -112,6 +112,34 @@ function AbrirModalEditar (id, nombre, apellido, correo){
     modalEditar.showModal();
 }
 
+document.getElementById("frmEditar").addEventListener("submit", async e => {
+    e.preventDefault(); //evita que el formulario de envie
 
+    //capturar los valores de los input
+    const id = document.getElementById("txtIdEditar").value;
+    const nombre = document.getElementById("txtNombreEditar").value.trim();
+    const apellido = document.getElementById("txtApellidoEditar").value.trim();
+    const correo = document.getElementById("txtEmailEditar").value.trim();
 
+    //validacion de las constantes
+    if(!id || !nombre || !apellido || !correo){
+        alert("Complete todos los campos");
+        return; //evita que el codigo se diga ejecutando
+    }
+    
+    //llamada a la api
+    const respuesta = await fetch(`${API_URL}/${id}`, {
+        method: "PUT", 
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({correo, nombre, apellido})
+    });
 
+    if(respuesta.ok){
+        alert("El registro fue actualizado con exito");
+        modalEditar.close();
+        obtenerIntegrantes();
+    }
+    else{
+        alert("El registro no pudo ser actualizado")
+    }
+});
