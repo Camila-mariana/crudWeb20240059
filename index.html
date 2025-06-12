@@ -59,8 +59,27 @@
                 <button type="submit" class="contrast">Guardar</button>
             </form>
         </article>
-        
     </dialog>
+
+    <!--CUADRO DE DIALOGO PARA EDITAR-->
+
+    <dialog id="mdEditar" >
+        <article>
+            <header>
+                <a href="#" class="close" id="btnCerrarEditar"></a> <!--x de cerrar-->
+                <h3>Actualizar Registro</h3>
+            </header>
+            <form id="frmEditar">
+                <input type="hidden"  id="txtIdEditar">
+                <input type="text" id="txtNombreEditar" placeholder="Nombre" required>
+                <input type="text" id="txtApellidoEditar" placeholder="Apellido" required>
+                <input type="email" id="txtEmailEditar" placeholder="Correo Electrónico">
+    
+                <button type="submit" class="contrast">Actualizar</button>
+            </form>
+        </article>
+    </dialog>
+
     <button id="btnAgregar" class="add_boton">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-plus-icon lucide-circle-plus"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
     </button>
